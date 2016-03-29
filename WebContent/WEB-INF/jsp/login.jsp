@@ -7,13 +7,14 @@
 <title>Login Page</title>
 </head>
 <body><h1>Login</h1>
+
+<label style="color:red;">${errorMsg}</label>
 <form action="${pageContext.request.contextPath}/login" method="post">
-
-<input type="text" name="username"/>
-<br>
-<input type="text" name="password"/>
-<br><input type="submit" value="login"/>
-
+  First name:<br>
+  <input type="text" name="username"/><br>
+  Password:<br>
+  <input type="text" name="password"/>
+  <br><input type="submit" value="login"/>
 </form>
 </body>
 </html>
