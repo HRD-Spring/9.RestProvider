@@ -39,7 +39,7 @@ public class LoginController {
 			LoginModel lm = new LoginModel();
 			String message = lm.doLoginProcess(username, password);
 			if (message.equals("login success")) {
-				session.setAttribute("username", username);
+				 session.setAttribute("username", username);
 				return "redirect:/myprofile"; // user redirect to change url
 			} else {
 				md.addAttribute("errorMsg", message);
