@@ -11,7 +11,7 @@
 </head>
 <body>
 	<a class="demo" href="${pageContext.request.contextPath}/login">Login</a>
-	
+	<a class="demo" href="${pageContext.request.contextPath}/signup">Sign Up</a><br>
 	<img alt="demo" src='<c:url value="/img/pd.png" />' />
 	
 	<a onclick="hello()">sign up</a>
