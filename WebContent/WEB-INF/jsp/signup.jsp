@@ -5,12 +5,38 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Sign Up</title>
+
+<script type="text/javascript">
+	function doValidation(){
+		var username = document.getElementById("username").value;
+		if(parseInt(username.length) < 4){
+			alert("Username must be at least 4 characters long");
+			return false;
+		}
+		
+		var password = document.getElementById("password").value;
+		var repassword = document.getElementById("repassword").value;
+		
+		if(parseInt(password.length) < 6){
+			alert("Password must be at least 6 characters long");
+			return false;
+		}
+		
+		if(password != repassword){
+			alert("Password and re-password are not same.");
+			return false;
+		}
+		
+		return true;
+	}
+
+</script>
 </head>
 <body>
 
 <div>
 <label>${message }</label>
-			<form  action="${pageContext.request.contextPath}/signup" method="post" enctype="multipart/form-data"> 
+			<form  action="${pageContext.request.contextPath}/signup" method="post" enctype="multipart/form-data" onsubmit="return doValidation()"> 
 				<h1>Sign Up</h1> 
 				<p> 
 					<label for="username" > Your email or username </label>
