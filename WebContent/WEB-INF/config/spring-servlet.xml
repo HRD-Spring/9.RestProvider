@@ -26,7 +26,7 @@
 
 	<bean id="firstJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
 		<property name="jobDetail" ref="firstJob"></property>
-		<property name="cronExpression" value="0 0/1 * 1/1 * ? *"></property>
+		<property name="cronExpression" value="0 0 * 1/1 * ? *"></property>
 	</bean>
 
 	<bean id="schedulerManager"
