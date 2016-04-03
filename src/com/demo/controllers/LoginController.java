@@ -1,12 +1,10 @@
 package com.demo.controllers;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import org.apache.catalina.realm.LockOutRealm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -54,13 +52,20 @@ public class LoginController {
 			} else {
 
 				LoginModel lm = new LoginModel();
-				String message = lm.doLoginProcess(username, password);
+				String message = lm.doHibernateLogin(username, password);
+				if (message.equals("login success")) {
+					session.setAttribute("username", username);
+					return "redirect:/myprofile";
+				}else {
+					md.addAttribute("errorMsg", message);
+				}
+			/*	String message = lm.doLoginProcess(username, password);
 				if (message.equals("login success")) {
 					session.setAttribute("username", username);
 					return "redirect:/myprofile"; // user redirect to change url
 				} else {
 					md.addAttribute("errorMsg", message);
-				}
+				}*/
 			}
 			return "login";
 		} catch (Exception e) {

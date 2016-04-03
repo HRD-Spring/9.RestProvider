@@ -10,13 +10,13 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.model.SignUpModel;
+import com.demo.pojo.User;
 
 @Controller
 public class SignUpController {
@@ -45,9 +45,20 @@ public class SignUpController {
 				
 				String image = new File(data.get(6).getName()).getName();
 				
+				User user = new User();
+				user.setUsername(username);
+				user.setPassword(password);
+				user.setGender(gender);
+				user.setCountry(country);
+				user.setVehicle(vehicle);
+				user.setImage(image);
+								
 				if (password.equals(repassword)) {
 					SignUpModel signUpModel = new SignUpModel();
-					signUpModel.doSignUp(username, repassword, gender, vehicle, country, image);
+				
+					//signUpModel.doSignUp(username, repassword, gender, vehicle, country, image);
+					
+					message = signUpModel.doHibernateSigup(user);
 					
 					String path = request.getSession().getServletContext().getRealPath("/") + "//WEB-INF//images//";
 					data.get(6).write(new File(path + File.separator + image));

@@ -1,21 +1,38 @@
 package com.demo.pojo;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+@Entity
+@Table(name="user")
 public class User {
 	
 	//@NotBlank(message="Username can not be blank")
 	@NotBlank(message="Username can not be blank")
+	@Column(name="username")
+	@Id
 	private String username;
 	
 	//@Size(min=6, max=100, message="password length must be at least 6")
-	@Size(min=6, max=100)
+	@Size(min=2, max=100)
+	@Column(name="password")
 	private String password;
+	
+	@Column(name="gender")
 	private String gender;
+	
+	@Column(name="vehicle")	
 	private String vehicle;
+	
+	@Column(name="country")
 	private String country;
+	
+	@Column(name="image")
 	private String image;
 	
 	public String getUsername() {
