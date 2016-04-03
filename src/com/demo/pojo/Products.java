@@ -5,16 +5,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name="product")
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name="products")
 public class Products {
 
+	@XmlAttribute(name="idddd")
 	@Column(name="id")
 	@Id
 	@GeneratedValue
 	private int id;
 	
+	@XmlElement(name="product_name")
 	@Column(name="name")
 	private String name;
 	

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.dao.registery.RegisteryDAO;
 import com.demo.pojo.Products;
+import com.demo.pojo.ProductsList;
 
 @RestController
 public class RestProviderController {
@@ -36,6 +37,27 @@ public class RestProviderController {
 			jArray.put(json);
 		}
 		return jArray.toString();
+	}
+	
+	@RequestMapping(value="/xmlGetProductById/{productId}", method=RequestMethod.GET)
+	public Products xmlGetProductById(@PathVariable("productId") String productId) {
+		Products products = RegisteryDAO.getProductsDAO().getProductByProductId(productId);
+		products.setImage("http://localhost:8080/RestProvider/img/" + products.getImage());
 
+		return products;
+	}
+	
+	@RequestMapping(value="/xmlGetAllProducts", method=RequestMethod.GET)
+	public ProductsList xmlGetAllProducts() {
+		
+		ProductsList pList = new ProductsList();
+		pList.setProducts(RegisteryDAO.getProductsDAO().getAllProducts());
+		
+		for (Products product : pList.getProducts()) {
+			product.setImage("http://localhost:8080/RestProvider/img/" + product.getImage());
+		}
+		
+		return pList;
+		
 	}
 }
