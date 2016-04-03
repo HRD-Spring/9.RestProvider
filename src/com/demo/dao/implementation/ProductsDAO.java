@@ -45,4 +45,17 @@ public class ProductsDAO implements com.demo.dao.layer.ProductsDAO{
 			return false;
 		}
 	}
+
+	@Override
+	public Products getProductByProductId(String id) {
+		try {
+			Session session = HibernateConnection.doHibernateConnection().openSession();
+			List<Products> products = session.createQuery("From Products where id='"+id+"'").list();
+			return products.get(0);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return null;
+		}
+	}
 }
