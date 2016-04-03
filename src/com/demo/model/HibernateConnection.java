@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
+import com.demo.pojo.Products;
 import com.demo.pojo.User;
 
 public class HibernateConnection {
@@ -23,7 +24,8 @@ public class HibernateConnection {
 		Configuration configuration = new Configuration()
 				.setProperties(database)
 				.addPackage("com.demo.pojo")
-				.addAnnotatedClass(User.class);
+				.addAnnotatedClass(User.class)
+				.addAnnotatedClass(Products.class);
 		
 		StandardServiceRegistryBuilder standardServiceRegistryBuilder = new StandardServiceRegistryBuilder()
 				.applySettings(configuration.getProperties());

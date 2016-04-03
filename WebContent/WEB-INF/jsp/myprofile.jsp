@@ -8,5 +8,8 @@
 </head>
 <body>
 <h2>${user}</h2>
+<hr>
+
+<a href="${pageContext.request.contextPath}/products">Products</a>
 </body>
 </html>
