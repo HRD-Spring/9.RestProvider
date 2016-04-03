@@ -15,8 +15,31 @@
 		<property name="prefix" value="/WEB-INF/jsp/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
-	
+
 	<mvc:resources location="/WEB-INF/images/" mapping="/img/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/css/" mapping="/css/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/js/" mapping="/js/**"></mvc:resources>
+
+	<bean id="firstJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="com.demo.jobs.FirstJob"></property>
+	</bean>
+
+	<bean id="firstJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="firstJob"></property>
+		<property name="cronExpression" value="0 0/1 * 1/1 * ? *"></property>
+	</bean>
+
+	<bean id="schedulerManager"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+			<list>
+				<ref bean="firstJob" />
+			</list>
+		</property>
+		<property name="triggers">
+			<list>
+				<ref bean="firstJobTrigger"/>
+			</list>
+		</property>
+	</bean>
 </beans>

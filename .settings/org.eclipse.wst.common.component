@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="Ajax">
+    <wb-module deploy-name="SpringCronJob">
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="Ajax"/>
-        <property name="java-output-path" value="Ajax"/>
+        <property name="context-root" value="SpringCronJob"/>
+        <property name="java-output-path" value="SpringCronJob"/>
     </wb-module>
 </project-modules>
