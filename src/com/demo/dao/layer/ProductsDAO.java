@@ -7,4 +7,6 @@ import com.demo.pojo.Products;
 public interface ProductsDAO {
 	public List<Products> getAllProducts();
 	public List<Object[]> getAllProductsSQL();
+	
+	public boolean deleteProductById(String id);
 }

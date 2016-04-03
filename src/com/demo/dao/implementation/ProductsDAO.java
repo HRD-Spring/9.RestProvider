@@ -26,4 +26,23 @@ public class ProductsDAO implements com.demo.dao.layer.ProductsDAO{
 		
 		return allProducts;
 	}
+	
+	public boolean deleteProductById(String id) {
+		try {
+			Session session = HibernateConnection.doHibernateConnection().openSession();
+			List<Products> products = session.createQuery("From Products where id='"+id+"'").list();
+			
+			if (products != null && products.get(0) != null) {
+				session.beginTransaction();
+				session.delete(products.get(0));
+				session.getTransaction().commit();
+				session.close();
+			}
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
+	}
 }
