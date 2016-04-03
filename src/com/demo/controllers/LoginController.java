@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.demo.model.LoginModel;
+import com.demo.dao.registery.RegisteryDAO;
 import com.demo.pojo.User;
 
 @Controller
@@ -51,21 +51,22 @@ public class LoginController {
 				System.err.println("Server side validation take place...");
 			} else {
 
-				LoginModel lm = new LoginModel();
-				String message = lm.doHibernateLogin(username, password);
+				String message = RegisteryDAO.userDAO.doHibernateLogin(username, password);
 				if (message.equals("login success")) {
 					session.setAttribute("username", username);
 					return "redirect:/myprofile";
-				}else {
-					md.addAttribute("errorMsg", message);
-				}
-			/*	String message = lm.doLoginProcess(username, password);
-				if (message.equals("login success")) {
-					session.setAttribute("username", username);
-					return "redirect:/myprofile"; // user redirect to change url
 				} else {
 					md.addAttribute("errorMsg", message);
-				}*/
+				}
+
+				/*
+				 * String message =
+				 * RegisteryDAO.userDAO.doLoginProcess(username, password); if
+				 * (message.equals("login success")) {
+				 * session.setAttribute("username", username); return
+				 * "redirect:/myprofile"; // user redirect to change url } else
+				 * { md.addAttribute("errorMsg", message); }
+				 */
 			}
 			return "login";
 		} catch (Exception e) {

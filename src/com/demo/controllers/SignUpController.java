@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.demo.model.SignUpModel;
+import com.demo.dao.registery.RegisteryDAO;
 import com.demo.pojo.User;
 
 @Controller
@@ -54,11 +54,10 @@ public class SignUpController {
 				user.setImage(image);
 								
 				if (password.equals(repassword)) {
-					SignUpModel signUpModel = new SignUpModel();
-				
-					//signUpModel.doSignUp(username, repassword, gender, vehicle, country, image);
 					
-					message = signUpModel.doHibernateSigup(user);
+					//message = RegisteryDAO.userDAO.doSignUp(username, repassword, gender, vehicle, country, image);
+					
+					message = RegisteryDAO.userDAO.doHibernateSigup(user);
 					
 					String path = request.getSession().getServletContext().getRealPath("/") + "//WEB-INF//images//";
 					data.get(6).write(new File(path + File.separator + image));

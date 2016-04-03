@@ -1,13 +1,14 @@
-package com.demo.model;
+package com.demo.dao.implementation;
 
 import java.util.List;
 
 import org.hibernate.Session;
 
+import com.demo.dao.implementation.HibernateConnection;
 import com.demo.pojo.Products;
 
-public class ProductsModel {
-
+public class ProductsDAO implements com.demo.dao.layer.ProductsDAO{
+	
 	public List<Products> getAllProducts() {
 		Session session = HibernateConnection.doHibernateConnection().openSession();
 		
